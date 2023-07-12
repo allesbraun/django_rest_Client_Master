@@ -14,13 +14,13 @@ class ClientSerializer(serializers.ModelSerializer):
         errors = {}
         
         if not valid_cpf(data['cpf']):    
-            raise serializers.ValidationError({'cpf': "The cpf must contain eleven digits."})
+            raise serializers.ValidationError({'cpf': "The cpf number is invalid."})
         if not valid_rg(data['rg']):
             raise serializers.ValidationError({'rg': "The rg must contain nine digits."})
         if not valid_name(data['name']):
-            raise serializers.ValidationError({'name': ["The name must contain only letters"]})
+            raise serializers.ValidationError({'name': "The name must contain only letters."})
         if not valid_cellphone(data['cellphone']):
-            raise serializers.ValidationError({'cellphone': "The cellphone number must contain at least eleven digits."})
+            raise serializers.ValidationError({'cellphone': "The cellphone number must be XX XXXXX-XXXX."})
         
         if errors:
             raise serializers.ValidationError(errors)
